@@ -1,0 +1,54 @@
+<Page
+    x:Class="CoreWatch.App.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="20">
+            <StackPanel Spacing="2">
+                <TextBlock Text="Settings" FontSize="24" FontWeight="SemiBold" />
+                <TextBlock Text="Polling frequency, appearance, startup behavior, and persistence" Style="{StaticResource SubtleCaptionStyle}" />
+            </StackPanel>
+
+            <Border Style="{StaticResource CardBorderStyle}">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Monitoring" FontSize="15" FontWeight="SemiBold" />
+                    <ComboBox x:Name="IntervalCombo" Header="Polling Interval" Width="220" SelectionChanged="OnIntervalChanged">
+                        <ComboBoxItem Content="250 ms (Fast)" Tag="250" />
+                        <ComboBoxItem Content="500 ms" Tag="500" />
+                        <ComboBoxItem Content="1000 ms (Recommended)" Tag="1000" />
+                        <ComboBoxItem Content="2000 ms" Tag="2000" />
+                        <ComboBoxItem Content="5000 ms (Low Overhead)" Tag="5000" />
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardBorderStyle}">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Appearance" FontSize="15" FontWeight="SemiBold" />
+                    <ComboBox x:Name="ThemeCombo" Header="Application Theme" Width="220" SelectionChanged="OnThemeChanged">
+                        <ComboBoxItem Content="Use Windows System Theme" Tag="system" />
+                        <ComboBoxItem Content="Light" Tag="light" />
+                        <ComboBoxItem Content="Dark" Tag="dark" />
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardBorderStyle}">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Startup &amp; System Tray" FontSize="15" FontWeight="SemiBold" />
+                    <ToggleSwitch x:Name="StartupToggle" Header="Launch CoreWatch when Windows starts" Toggled="OnToggleChanged" />
+                    <ToggleSwitch x:Name="TrayToggle" Header="Minimize to System Tray when closing window" Toggled="OnToggleChanged" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardBorderStyle}">
+                <StackPanel Spacing="6">
+                    <TextBlock Text="Configuration File" FontSize="15" FontWeight="SemiBold" />
+                    <TextBlock x:Name="ConfigPathText" Text="" Style="{StaticResource SubtleCaptionStyle}" IsTextSelectionEnabled="True" />
+                    <TextBlock Text="CoreWatch is strictly read-only and never modifies voltages, clocks, fan curves, or BIOS settings." Style="{StaticResource SubtleCaptionStyle}" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

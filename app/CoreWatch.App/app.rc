@@ -1,0 +1,3 @@
+#include "resource.h"
+
+IDI_COREWATCH_ICON ICON "Assets\\CoreWatch.ico"

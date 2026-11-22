@@ -1,0 +1,74 @@
+<Page
+    x:Class="CoreWatch.App.CpuPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="20">
+            <Grid>
+                <StackPanel Spacing="2">
+                    <TextBlock Text="Processor" FontSize="24" FontWeight="SemiBold" />
+                    <TextBlock x:Name="CpuModelSubtitle" Text="Detecting processor..." Style="{StaticResource SubtleCaptionStyle}" />
+                </StackPanel>
+                <ComboBox x:Name="TimeWindowCombo" SelectedIndex="0" SelectionChanged="TimeWindowCombo_SelectionChanged" HorizontalAlignment="Right" Width="130">
+                    <ComboBoxItem Content="1 Minute" Tag="60" />
+                    <ComboBoxItem Content="5 Minutes" Tag="300" />
+                    <ComboBoxItem Content="30 Minutes" Tag="1800" />
+                </ComboBox>
+            </Grid>
+
+            <!-- Key CPU Metrics -->
+            <Grid ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="UTILIZATION" Style="{StaticResource CardTitleStyle}" />
+                        <TextBlock x:Name="UtilText" Text="--" Style="{StaticResource HeroMetricStyle}" />
+                        <TextBlock x:Name="CoresText" Text="-- Cores / -- Threads" Style="{StaticResource SubtleCaptionStyle}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="CLOCK SPEED" Style="{StaticResource CardTitleStyle}" />
+                        <TextBlock x:Name="ClockText" Text="--" Style="{StaticResource HeroMetricStyle}" />
+                        <TextBlock x:Name="MaxClockText" Text="Base/Max: --" Style="{StaticResource SubtleCaptionStyle}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="TEMPERATURE" Style="{StaticResource CardTitleStyle}" />
+                        <TextBlock x:Name="TempText" Text="Unavailable" FontSize="22" FontWeight="SemiBold" />
+                        <TextBlock Text="Requires supported sensor" Style="{StaticResource SubtleCaptionStyle}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="3" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="PACKAGE POWER" Style="{StaticResource CardTitleStyle}" />
+                        <TextBlock x:Name="PowerText" Text="Unavailable" FontSize="22" FontWeight="SemiBold" />
+                        <TextBlock Text="Requires supported sensor" Style="{StaticResource SubtleCaptionStyle}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Live CPU Chart -->
+            <StackPanel x:Name="ChartHost" />
+
+            <!-- Logical Processors Grid -->
+            <Border Style="{StaticResource CardBorderStyle}">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Logical Processors" FontSize="15" FontWeight="SemiBold" />
+                    <VariableSizedWrapGrid x:Name="LogicalCoresPanel" Orientation="Horizontal" ItemWidth="155" ItemHeight="64" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

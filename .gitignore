@@ -1,0 +1,39 @@
+# Build outputs
+build/
+out/
+obj/
+x64/
+ARM64/
+Release/
+Debug/
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.exp
+*.winmd
+*.pri
+*.xbf
+
+# Visual Studio & CMake
+.vs/
+*.user
+*.suo
+*.sln.docstates
+CMakeUserPresets.json
+CMakeCache.txt
+CMakeFiles/
+Testing/
+packages/
+
+# Generated files
+Generated Files/
+*.g.h
+*.g.cpp
+*.xaml.g.h
+*.xaml.g.hpp
+
+# User / OS files
+.DS_Store
+Thumbs.db

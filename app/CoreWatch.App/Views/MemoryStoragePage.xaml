@@ -1,0 +1,84 @@
+<Page
+    x:Class="CoreWatch.App.MemoryStoragePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="20">
+            <StackPanel Spacing="2">
+                <TextBlock Text="Memory &amp; Storage" FontSize="24" FontWeight="SemiBold" />
+                <TextBlock Text="Physical RAM allocation and fixed-disk capacity &amp; throughput" Style="{StaticResource SubtleCaptionStyle}" />
+            </StackPanel>
+
+            <!-- Physical Memory Card -->
+            <Border Style="{StaticResource CardBorderStyle}">
+                <StackPanel Spacing="12">
+                    <Grid>
+                        <TextBlock Text="PHYSICAL MEMORY (RAM)" Style="{StaticResource CardTitleStyle}" />
+                        <TextBlock x:Name="MemPercentText" Text="--" FontWeight="SemiBold" HorizontalAlignment="Right" />
+                    </Grid>
+                    <ProgressBar x:Name="MemBar" Minimum="0" Maximum="100" Value="0" Height="8" CornerRadius="4" />
+                    <Grid ColumnSpacing="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Total" Style="{StaticResource SubtleCaptionStyle}" />
+                            <TextBlock x:Name="MemTotalText" Text="--" FontSize="16" FontWeight="SemiBold" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="Used" Style="{StaticResource SubtleCaptionStyle}" />
+                            <TextBlock x:Name="MemUsedText" Text="--" FontSize="16" FontWeight="SemiBold" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Available" Style="{StaticResource SubtleCaptionStyle}" />
+                            <TextBlock x:Name="MemAvailText" Text="--" FontSize="16" FontWeight="SemiBold" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="3">
+                            <TextBlock Text="Commit Charge" Style="{StaticResource SubtleCaptionStyle}" />
+                            <TextBlock x:Name="MemCommitText" Text="--" FontSize="16" FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Disk Throughput Card -->
+            <Grid ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="DISK ACTIVE TIME" Style="{StaticResource CardTitleStyle}" />
+                        <TextBlock x:Name="DiskActiveText" Text="--" Style="{StaticResource HeroMetricStyle}" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="READ THROUGHPUT" Style="{StaticResource CardTitleStyle}" />
+                        <TextBlock x:Name="DiskReadText" Text="--" Style="{StaticResource HeroMetricStyle}" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="2" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="WRITE THROUGHPUT" Style="{StaticResource CardTitleStyle}" />
+                        <TextBlock x:Name="DiskWriteText" Text="--" Style="{StaticResource HeroMetricStyle}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Volumes List -->
+            <Border Style="{StaticResource CardBorderStyle}">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Storage Volumes" FontSize="15" FontWeight="SemiBold" />
+                    <StackPanel x:Name="VolumesPanel" Spacing="12" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

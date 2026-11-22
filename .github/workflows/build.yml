@@ -1,0 +1,32 @@
+name: Windows Build & Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Configure and build native CMake libraries & tests
+        run: |
+          cmake -B build -G "Visual Studio 17 2022" -A x64 -DCOREWATCH_BUILD_TESTS=ON
+          cmake --build build --config Release
+
+      - name: Run C++ unit tests
+        run: ctest --test-dir build -C Release --output-on-failure
+
+      - name: Restore WinUI 3 NuGet packages
+        run: msbuild CoreWatch.sln /t:Restore /p:Configuration=Release /p:Platform=x64 -v:minimal
+
+      - name: Build WinUI 3 application (Release|x64)
+        run: msbuild CoreWatch.sln /p:Configuration=Release /p:Platform=x64 -m -v:minimal

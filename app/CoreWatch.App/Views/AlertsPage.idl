@@ -1,0 +1,8 @@
+namespace CoreWatch.App
+{
+    [default_interface]
+    runtimeclass AlertsPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        AlertsPage();
+    }
+}

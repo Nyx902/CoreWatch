@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <CppWinRTOptimized>true</CppWinRTOptimized>
+    <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
+    <MinimalCoreWin>true</MinimalCoreWin>
+    <ProjectGuid>{8A4E7B31-6D42-4F8C-9C1E-2B7A5D91E301}</ProjectGuid>
+    <ProjectName>CoreWatch.App</ProjectName>
+    <RootNamespace>CoreWatch.App</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>false</AppContainerApplication>
+    <AppxPackage>false</AppxPackage>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
+    <UseWinUI>true</UseWinUI>
+    <WindowsPackageType>None</WindowsPackageType>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <EnableMsixTooling>false</EnableMsixTooling>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset Condition="'$(DefaultPlatformToolset)' != ''">$(DefaultPlatformToolset)</PlatformToolset>
+    <PlatformToolset Condition="'$(PlatformToolset)' == ''">v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <DesktopCompatible>true</DesktopCompatible>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+
+  <PropertyGroup Label="UserMacros" />
+
+  <PropertyGroup>
+    <OutDir>$(SolutionDir)out\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\..\include;$(IntDir);$(IntDir)Views\;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level4</WarningLevel>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /utf-8</AdditionalOptions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;WIN32_LEAN_AND_MEAN;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>pdh.lib;powrprof.lib;shell32.lib;ole32.lib;advapi32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.260224002" />
+    <PackageReference Include="Microsoft.Windows.CppWinRT" Version="2.0.240405.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="App.xaml.h">
+      <DependentUpon>App.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="MainWindow.xaml.h">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Controls\LiveChartControl.h" />
+    <ClInclude Include="Tray\TrayIconManager.h" />
+    <ClInclude Include="Views\DashboardPage.xaml.h">
+      <DependentUpon>Views\DashboardPage.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Views\CpuPage.xaml.h">
+      <DependentUpon>Views\CpuPage.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Views\GpuPage.xaml.h">
+      <DependentUpon>Views\GpuPage.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Views\MemoryStoragePage.xaml.h">
+      <DependentUpon>Views\MemoryStoragePage.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Views\AlertsPage.xaml.h">
+      <DependentUpon>Views\AlertsPage.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Views\SettingsPage.xaml.h">
+      <DependentUpon>Views\SettingsPage.xaml</DependentUpon>
+    </ClInclude>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+    <Page Include="MainWindow.xaml" />
+    <Page Include="Views\DashboardPage.xaml" />
+    <Page Include="Views\CpuPage.xaml" />
+    <Page Include="Views\GpuPage.xaml" />
+    <Page Include="Views\MemoryStoragePage.xaml" />
+    <Page Include="Views\AlertsPage.xaml" />
+    <Page Include="Views\SettingsPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="App.xaml.cpp">
+      <DependentUpon>App.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="MainWindow.xaml.cpp">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Controls\LiveChartControl.cpp" />
+    <ClCompile Include="Tray\TrayIconManager.cpp" />
+    <ClCompile Include="Views\DashboardPage.xaml.cpp">
+      <DependentUpon>Views\DashboardPage.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Views\CpuPage.xaml.cpp">
+      <DependentUpon>Views\CpuPage.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Views\GpuPage.xaml.cpp">
+      <DependentUpon>Views\GpuPage.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Views\MemoryStoragePage.xaml.cpp">
+      <DependentUpon>Views\MemoryStoragePage.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Views\AlertsPage.xaml.cpp">
+      <DependentUpon>Views\AlertsPage.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Views\SettingsPage.xaml.cpp">
+      <DependentUpon>Views\SettingsPage.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+
+    <!-- CoreWatch native C++20 libraries -->
+    <ClCompile Include="..\..\src\core\Format.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sensors\CpuSensorProvider.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sensors\MemorySensorProvider.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sensors\StorageSensorProvider.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sensors\NvmlGpuSensorProvider.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\config\JsonSerializer.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\config\ConfigStore.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\engine\AlertEvaluator.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\engine\MonitoringEngine.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Midl Include="App.idl" />
+    <Midl Include="MainWindow.idl" />
+    <Midl Include="Views\DashboardPage.idl" />
+    <Midl Include="Views\CpuPage.idl" />
+    <Midl Include="Views\GpuPage.idl" />
+    <Midl Include="Views\MemoryStoragePage.idl" />
+    <Midl Include="Views\AlertsPage.idl" />
+    <Midl Include="Views\SettingsPage.idl" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Manifest Include="app.manifest" />
+    <ResourceCompile Include="app.rc" />
+  </ItemGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+  <Target Name="RunXamlPass2BeforeCompile" BeforeTargets="ClCompile" DependsOnTargets="MarkupCompilePass2">
+    <ItemGroup>
+      <_CoreWatchXamlCpp Include="$(IntDir)MainWindow.xaml.g.hpp" />
+      <_CoreWatchXamlCpp Include="$(IntDir)Views\*.xaml.g.hpp" />
+      <_CoreWatchXamlCpp Include="$(IntDir)XamlTypeInfo.g.cpp" />
+      <_CoreWatchXamlCpp Include="$(IntDir)XamlTypeInfo.Impl.g.cpp" />
+      <_CoreWatchXamlCpp Remove="@(ClCompile)" />
+      <ClCompile Include="@(_CoreWatchXamlCpp)" Condition="Exists('%(Identity)')">
+        <CompileAs>CompileAsCpp</CompileAs>
+      </ClCompile>
+    </ItemGroup>
+  </Target>
+</Project>

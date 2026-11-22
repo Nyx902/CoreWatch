@@ -1,0 +1,74 @@
+<Page
+    x:Class="CoreWatch.App.GpuPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="20">
+            <Grid>
+                <StackPanel Spacing="2">
+                    <TextBlock Text="Graphics (NVIDIA NVML)" FontSize="24" FontWeight="SemiBold" />
+                    <TextBlock x:Name="GpuModelSubtitle" Text="Checking NVML availability..." Style="{StaticResource SubtleCaptionStyle}" />
+                </StackPanel>
+                <ComboBox x:Name="TimeWindowCombo" SelectedIndex="0" SelectionChanged="TimeWindowCombo_SelectionChanged" HorizontalAlignment="Right" Width="130">
+                    <ComboBoxItem Content="1 Minute" Tag="60" />
+                    <ComboBoxItem Content="5 Minutes" Tag="300" />
+                    <ComboBoxItem Content="30 Minutes" Tag="1800" />
+                </ComboBox>
+            </Grid>
+
+            <InfoBar x:Name="NvmlInfoBar" IsOpen="False" Severity="Informational" IsClosable="False"
+                     Title="NVIDIA NVML Unavailable"
+                     Message="nvml.dll was not found or no NVIDIA GPU was detected. Unsupported sensors are shown as Unavailable." />
+
+            <!-- GPU Metrics Grid -->
+            <Grid ColumnSpacing="16" RowSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="GPU UTILIZATION" Style="{StaticResource CardTitleStyle}" />
+                        <TextBlock x:Name="UtilText" Text="Unavailable" Style="{StaticResource HeroMetricStyle}" />
+                        <TextBlock x:Name="ClocksText" Text="Clocks: Unavailable" Style="{StaticResource SubtleCaptionStyle}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="TEMPERATURE" Style="{StaticResource CardTitleStyle}" />
+                        <TextBlock x:Name="TempText" Text="Unavailable" Style="{StaticResource HeroMetricStyle}" />
+                        <TextBlock x:Name="FanText" Text="Fan Speed: Unavailable" Style="{StaticResource SubtleCaptionStyle}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="POWER DRAW" Style="{StaticResource CardTitleStyle}" />
+                        <TextBlock x:Name="PowerText" Text="Unavailable" Style="{StaticResource HeroMetricStyle}" />
+                        <TextBlock x:Name="PowerLimitText" Text="Limit: Unavailable" Style="{StaticResource SubtleCaptionStyle}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="8">
+                        <Grid>
+                            <TextBlock Text="DEDICATED VRAM" Style="{StaticResource CardTitleStyle}" />
+                            <TextBlock x:Name="VramText" Text="Unavailable" HorizontalAlignment="Right" FontWeight="SemiBold" />
+                        </Grid>
+                        <ProgressBar x:Name="VramBar" Minimum="0" Maximum="100" Value="0" Height="8" CornerRadius="4" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <StackPanel x:Name="ChartsHost" Spacing="16" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

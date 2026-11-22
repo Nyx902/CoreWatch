@@ -1,0 +1,91 @@
+<Page
+    x:Class="CoreWatch.App.DashboardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="20">
+            <!-- Header + Time Window Selector -->
+            <Grid>
+                <StackPanel Spacing="2">
+                    <TextBlock Text="System Overview" FontSize="24" FontWeight="SemiBold" />
+                    <TextBlock Text="Live read-only telemetry across CPU, GPU, Memory, and Storage" Style="{StaticResource SubtleCaptionStyle}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="Chart Window:" VerticalAlignment="Center" Opacity="0.7" FontSize="12" />
+                    <ComboBox x:Name="TimeWindowCombo" SelectedIndex="0" SelectionChanged="TimeWindowCombo_SelectionChanged" Width="130">
+                        <ComboBoxItem Content="1 Minute" Tag="60" />
+                        <ComboBoxItem Content="5 Minutes" Tag="300" />
+                        <ComboBoxItem Content="30 Minutes" Tag="1800" />
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+
+            <!-- 4 Summary Cards -->
+            <Grid ColumnSpacing="16" RowSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- CPU Card -->
+                <Border Grid.Column="0" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="6">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE950;" FontSize="14" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                            <TextBlock Text="CPU" Style="{StaticResource CardTitleStyle}" />
+                        </StackPanel>
+                        <TextBlock x:Name="CpuHeroText" Text="--" Style="{StaticResource HeroMetricStyle}" />
+                        <TextBlock x:Name="CpuNameText" Text="Loading..." Style="{StaticResource SubtleCaptionStyle}" TextTrimming="CharacterEllipsis" />
+                        <TextBlock x:Name="CpuDetailText" Text="Clock: --" Style="{StaticResource SubtleCaptionStyle}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- GPU Card -->
+                <Border Grid.Column="1" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="6">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE7F4;" FontSize="14" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                            <TextBlock Text="GPU" Style="{StaticResource CardTitleStyle}" />
+                        </StackPanel>
+                        <TextBlock x:Name="GpuHeroText" Text="Unavailable" Style="{StaticResource HeroMetricStyle}" />
+                        <TextBlock x:Name="GpuNameText" Text="No NVIDIA GPU detected" Style="{StaticResource SubtleCaptionStyle}" TextTrimming="CharacterEllipsis" />
+                        <TextBlock x:Name="GpuDetailText" Text="Temp: Unavailable" Style="{StaticResource SubtleCaptionStyle}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Memory Card -->
+                <Border Grid.Column="2" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="6">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE964;" FontSize="14" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                            <TextBlock Text="MEMORY" Style="{StaticResource CardTitleStyle}" />
+                        </StackPanel>
+                        <TextBlock x:Name="MemHeroText" Text="--" Style="{StaticResource HeroMetricStyle}" />
+                        <TextBlock x:Name="MemUsedText" Text="Used: --" Style="{StaticResource SubtleCaptionStyle}" />
+                        <TextBlock x:Name="MemAvailText" Text="Available: --" Style="{StaticResource SubtleCaptionStyle}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Storage Card -->
+                <Border Grid.Column="3" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="6">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xEDA2;" FontSize="14" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                            <TextBlock Text="STORAGE" Style="{StaticResource CardTitleStyle}" />
+                        </StackPanel>
+                        <TextBlock x:Name="DiskHeroText" Text="--" Style="{StaticResource HeroMetricStyle}" />
+                        <TextBlock x:Name="DiskVolumeText" Text="Primary Volume: --" Style="{StaticResource SubtleCaptionStyle}" />
+                        <TextBlock x:Name="DiskThroughputText" Text="R/W: --" Style="{StaticResource SubtleCaptionStyle}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Live Charts Container -->
+            <StackPanel x:Name="ChartsHost" Spacing="16" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

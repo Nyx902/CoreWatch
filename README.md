@@ -13,10 +13,6 @@
 - **Temperature Alerts**: Configurable thresholds with hysteresis and cooldown, surfacing tray balloon notifications and an in-app event log.
 - **System Tray & Persistence**: Background monitoring, minimize-to-tray, pause/resume, JSON configuration at `%LOCALAPPDATA%\CoreWatch\config.json`, and optional Windows startup integration.
 
-## Screenshots
-
-> _Add screenshots of the Dashboard, CPU, GPU, and Dark/Light theme views here after running the application locally._
-
 ## Requirements
 
 - Windows 10 (19041+) or Windows 11 (recommended)
